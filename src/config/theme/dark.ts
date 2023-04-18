@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import themeTypography from "./typography";
 
 const theme = createTheme({
   palette: {
@@ -14,6 +15,7 @@ const theme = createTheme({
       secondary: "#767676",
     },
   },
+  typography: themeTypography,
 });
 
 export default theme;

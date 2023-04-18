@@ -1,6 +1,6 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import lightTheme from "../../src/utils/theme/light";
+import lightTheme from "../../src/config/theme/light";
 
 const AppLayout = () => {
   return (

@@ -2,24 +2,44 @@
   margin: 0;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF-Pro-Rounded-Thin.otf") format("truetype");
+  font-weight: 200;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background: #000;
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF-Pro-Rounded-Light.otf") format("truetype");
+  font-weight: 300;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF-Pro-Rounded-Regular.otf") format("truetype");
+  font-weight: 400;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.15);
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF-Pro-Rounded-Medium.otf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF-Pro-Rounded-Semibold.otf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF-Pro-Rounded-Bold.otf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF-Pro-Rounded-Heavy.otf") format("truetype");
+  font-weight: 800;
 }
