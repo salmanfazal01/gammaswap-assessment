@@ -1,9 +1,6 @@
 import React from "react";
 import { Button, ButtonProps, styled } from "@mui/material";
-
-interface MainButtonProps {
-  appearance?: "primary" | "default" | "border";
-}
+import { MainButtonProps } from "../../types/common";
 
 const StyledButton = styled(Button)<MainButtonProps>(
   ({ theme, appearance, size }) => ({
@@ -61,7 +58,7 @@ const StyledButton = styled(Button)<MainButtonProps>(
     ...(appearance === "border" && {
       backgroundColor: theme.palette.common.white,
       border: `1px solid ${theme.palette.secondary.dark}`,
-      boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.06)",
+      boxShadow: theme.shadows[1],
       ":hover": {
         backgroundColor: theme.palette.secondary.dark,
       },

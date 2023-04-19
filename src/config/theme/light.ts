@@ -1,4 +1,4 @@
-import { createTheme, TypeBackground } from "@mui/material";
+import { createTheme, TypeBackground, Shadows } from "@mui/material";
 import themeTypography from "./typography";
 
 interface CustomTypeBackground extends TypeBackground {
@@ -26,6 +26,11 @@ const lightTheme = createTheme({
       secondary: "#969696",
     },
   },
+  shadows: [
+    "none",
+    "0px 1px 1px rgba(0, 0, 0, 0.06)",
+    ...Array(23).fill("na"),
+  ] as Shadows,
 
   typography: themeTypography,
 });

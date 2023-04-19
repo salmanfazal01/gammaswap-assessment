@@ -30,8 +30,6 @@ const InvestCard = () => {
 
   const { loadingPopup, closeLoadingPopup, setLoadingPopup } = useAppContext();
 
-  console.log(loadingPopup);
-
   const toggleFavorite = () => {
     setFavorited(!favorited);
   };
@@ -50,11 +48,11 @@ const InvestCard = () => {
   return (
     <Paper
       elevation={0}
-      sx={{
+      sx={(theme) => ({
         p: 4,
         borderRadius: "16px",
-        boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.06)",
-      }}
+        boxShadow: theme.shadows[1],
+      })}
     >
       <Stack spacing={5}>
         {/* Header */}

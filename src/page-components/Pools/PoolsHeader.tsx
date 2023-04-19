@@ -1,8 +1,10 @@
 import InfoIcon from "@mui/icons-material/Info";
-import { MenuItem, Select, Stack, Typography } from "@mui/material";
-import React from "react";
-import MainButton from "../../components/buttons/MainButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Stack, Typography } from "@mui/material";
+import React, { useState } from "react";
+import MainButton from "../../components/buttons/MainButton";
+import OptionsButton from "../../components/buttons/OptionsButton";
+import { PERIOD_MENU_OPTIONS } from "../../constants";
 import { cryptos } from "../../utils/cryptos";
 
 const InfoText: React.FC<{ title: string }> = ({ title }) => (
@@ -18,7 +20,12 @@ const InfoText: React.FC<{ title: string }> = ({ title }) => (
 );
 
 const PoolsHeader = () => {
+  const [period, setPeriod] = useState(PERIOD_MENU_OPTIONS[0].value);
   const arbitrum = cryptos.find((i) => i.symbol === "ARB");
+
+  const changePeriod = (val: any): void => {
+    setPeriod(val);
+  };
 
   return (
     <Stack
@@ -34,10 +41,16 @@ const PoolsHeader = () => {
       <InfoText title="Performance Range" />
 
       <Stack direction="row" alignItems="center" spacing={1} flexWrap="wrap">
-        <MainButton size="small" appearance="border">
-          24h
+        <OptionsButton
+          size="small"
+          appearance="border"
+          menuItems={PERIOD_MENU_OPTIONS}
+          value={period}
+          handleChange={changePeriod}
+        >
+          {period}
           <KeyboardArrowDownIcon fontSize="small" sx={{ mr: -0.5 }} />
-        </MainButton>
+        </OptionsButton>
 
         <MainButton size="small" appearance="border">
           <img
