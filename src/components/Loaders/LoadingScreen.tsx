@@ -1,25 +1,24 @@
 import { Box, Container, Stack, keyframes } from "@mui/material";
-import React from "react";
-import LoadingLogo from "../../../assets/images/loading-logo.svg";
+import LoadingLogo from "../../assets/images/logo-large.svg";
 
 const animate = keyframes`
   0% {
     opacity: 0;
-    transform: scale(1.2, 1.2);
+    transform: rotate(0deg) scale(1.2, 1.2);
   }
 
   50% {
     opacity: 1;
-    transform: scale(0.7, 0.7);
+    transform: rotate(180deg) scale(0.3, 0.3);
   }
 
   100% {
     opacity: 1;
-    transform: scale(3, 3);
+    transform: rotate(360deg) scale(1.5, 1.5);
   }
 `;
 
-const LoadingRouter = () => {
+const LoadingScreen = () => {
   return (
     <Stack
       alignItems="center"
@@ -40,6 +39,7 @@ const LoadingRouter = () => {
           <img
             src={LoadingLogo}
             style={{
+              maxHeight: "300px",
               width: "100%",
               objectFit: "contain",
             }}
@@ -50,4 +50,4 @@ const LoadingRouter = () => {
   );
 };
 
-export default LoadingRouter;
+export default LoadingScreen;

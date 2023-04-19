@@ -3,20 +3,24 @@ import AppLayout from "./layouts/AppLayout";
 import HomeLayout from "./layouts/HomeLayout";
 import HomePage from "./pages/Home";
 import PoolPage from "./pages/Pool";
+import { Suspense } from "react";
+import LoadingScreen from "./components/Loaders/LoadingScreen";
 
 const App = () => {
   return (
-    <Routes>
-      {/* Home Layout */}
-      <Route element={<HomeLayout />}>
-        <Route index path="/" element={<HomePage />} />
-      </Route>
+    <Suspense fallback={<LoadingScreen />}>
+      <Routes>
+        {/* Home Layout */}
+        <Route element={<HomeLayout />}>
+          <Route index path="/" element={<HomePage />} />
+        </Route>
 
-      {/* App Layout */}
-      <Route element={<AppLayout />}>
-        <Route path="/pool" element={<PoolPage />} />
-      </Route>
-    </Routes>
+        {/* App Layout */}
+        <Route element={<AppLayout />}>
+          <Route path="/pool" element={<PoolPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
 

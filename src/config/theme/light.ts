@@ -1,5 +1,9 @@
-import { createTheme } from "@mui/material";
+import { createTheme, TypeBackground } from "@mui/material";
 import themeTypography from "./typography";
+
+interface CustomTypeBackground extends TypeBackground {
+  dark: string;
+}
 
 const theme = createTheme({
   palette: {
@@ -15,12 +19,14 @@ const theme = createTheme({
     },
     background: {
       default: "#F7F7F7",
-    },
+      dark: "#1A1A1A",
+    } as CustomTypeBackground,
     text: {
       primary: "#1C1C1C",
       secondary: "#969696",
     },
   },
+
   typography: themeTypography,
 });
 

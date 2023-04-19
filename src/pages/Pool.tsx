@@ -3,6 +3,7 @@ import { Stack, Container, Box } from "@mui/material";
 import PoolsHeader from "../page-components/Pools/PoolsHeader";
 import InvestCard from "../page-components/Pools/InvestCard";
 import Background from "../assets/images/background.svg";
+import withLoadingScreen from "../hoc/withLoadingScreen";
 
 const Pool = () => {
   return (
@@ -35,4 +36,4 @@ const Pool = () => {
   );
 };
 
-export default Pool;
+export default withLoadingScreen(Pool);
