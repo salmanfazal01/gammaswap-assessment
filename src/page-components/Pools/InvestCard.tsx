@@ -17,6 +17,7 @@ import LiquidityAprInfo from "./LiquidityAprInfo";
 import Reserves from "./Reserves";
 import VolumeFees from "./VolumeFees";
 import { useAppContext } from "../../context/AppContext";
+import { usePoolsContext } from "../../context/PoolsContext";
 
 const StyledLogo = styled("img")({
   height: 40,
@@ -24,11 +25,10 @@ const StyledLogo = styled("img")({
 });
 
 const InvestCard = () => {
-  const [primary, setPrimary] = useState(cryptos[7]);
-  const [secondary, setSecondary] = useState(cryptos[13]);
+  const { period, primaryCoin, secondaryCoin } = usePoolsContext();
   const [favorited, setFavorited] = useState(false);
 
-  const { loadingPopup, closeLoadingPopup, setLoadingPopup } = useAppContext();
+  const { closeLoadingPopup, setLoadingPopup } = useAppContext();
 
   const toggleFavorite = () => {
     setFavorited(!favorited);
@@ -66,12 +66,12 @@ const InvestCard = () => {
             {/* Symbols */}
             <Stack spacing={2.5}>
               <Stack direction="row">
-                <StyledLogo src={primary.image} />
-                <StyledLogo src={secondary.image} sx={{ ml: -0.5 }} />
+                <StyledLogo src={primaryCoin.image} />
+                <StyledLogo src={secondaryCoin.image} sx={{ ml: -0.5 }} />
               </Stack>
 
               <Typography variant="h5" sx={{ fontWeight: 700 }}>
-                {primary.symbol} / {secondary.symbol}
+                {primaryCoin.symbol} / {secondaryCoin.symbol}
               </Typography>
             </Stack>
 
@@ -113,13 +113,13 @@ const InvestCard = () => {
             title="Liquidity"
             value="$23.00M"
             change={2.38}
-            caption="24h Change"
+            caption={`${period} Change`}
           />
 
           <LiquidityAprInfo
             title="APR"
             value="2.34%"
-            caption="24h Performance"
+            caption={`${period} Performance`}
           />
         </Stack>
 
@@ -128,8 +128,8 @@ const InvestCard = () => {
           {/* Reserves */}
           <Reserves
             percentage={45}
-            primarySymbol={primary.symbol}
-            secondarySymbol={secondary.symbol}
+            primarySymbol={primaryCoin.symbol}
+            secondarySymbol={secondaryCoin.symbol}
             primaryValue={"6598.00"}
             secondaryValue={"11,581,900"}
             sx={{ mb: 4 }}
@@ -137,9 +137,9 @@ const InvestCard = () => {
 
           {/* Volume + Fees */}
           <Stack spacing={1.5} sx={{ mb: 4 }}>
-            <VolumeFees title="24h Volume" value="$15,00M" />
+            <VolumeFees title={`${period} Volume`} value="$15,00M" />
 
-            <VolumeFees title="24h Fees" value="$50,000" />
+            <VolumeFees title={`${period} Fees`} value="$50,000" />
           </Stack>
 
           {/* Invest */}

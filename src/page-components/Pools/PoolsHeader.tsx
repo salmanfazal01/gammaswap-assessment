@@ -6,6 +6,7 @@ import MainButton from "../../components/buttons/MainButton";
 import OptionsButton from "../../components/buttons/OptionsButton";
 import { PERIOD_MENU_OPTIONS } from "../../constants";
 import { cryptos } from "../../utils/cryptos";
+import { usePoolsContext } from "../../context/PoolsContext";
 
 const InfoText: React.FC<{ title: string }> = ({ title }) => (
   <Stack
@@ -20,12 +21,9 @@ const InfoText: React.FC<{ title: string }> = ({ title }) => (
 );
 
 const PoolsHeader = () => {
-  const [period, setPeriod] = useState(PERIOD_MENU_OPTIONS[0].value);
-  const arbitrum = cryptos.find((i) => i.symbol === "ARB");
+  const { period, changePeriod } = usePoolsContext();
 
-  const changePeriod = (val: any): void => {
-    setPeriod(val);
-  };
+  const arbitrum = cryptos.find((i) => i.symbol === "ARB");
 
   return (
     <Stack

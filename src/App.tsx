@@ -6,6 +6,7 @@ import PoolPage from "./pages/Pool";
 import { Suspense } from "react";
 import LoadingScreen from "./components/Loaders/LoadingScreen";
 import "./index.css";
+import { PoolsContextProvider } from "./context/PoolsContext";
 
 const App = () => {
   return (
