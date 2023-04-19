@@ -5,17 +5,17 @@ import darkTheme from "../../config/theme/dark";
 const animate = keyframes`
   0% {
     opacity: 0;
-    transform: rotate(0deg) scale(1.2, 1.2);
+    transform: rotate(180deg) scale(1.2, 1.2);
   }
 
-  50% {
+  40% {
     opacity: 1;
-    transform: rotate(180deg) scale(0.3, 0.3);
+    transform: rotate(0deg) scale(0.3, 0.3);
   }
 
   100% {
     opacity: 1;
-    transform: rotate(360deg) scale(1.5, 1.5);
+    transform: rotate(-500deg) scale(1.8, 1.8);
   }
 `;
 
