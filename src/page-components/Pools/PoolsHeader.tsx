@@ -3,7 +3,7 @@ import { MenuItem, Select, Stack, Typography } from "@mui/material";
 import React from "react";
 import MainButton from "../../components/buttons/MainButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { ARBITRUM } from "../../utils/cryptoIcons";
+import { cryptos } from "../../utils/cryptos";
 
 const InfoText: React.FC<{ title: string }> = ({ title }) => (
   <Stack
@@ -18,6 +18,8 @@ const InfoText: React.FC<{ title: string }> = ({ title }) => (
 );
 
 const PoolsHeader = () => {
+  const arbitrum = cryptos.find((i) => i.symbol === "ARB");
+
   return (
     <Stack
       direction={{ xs: "column", sm: "row" }}
@@ -38,7 +40,10 @@ const PoolsHeader = () => {
         </MainButton>
 
         <MainButton size="small" appearance="border">
-          <img src={ARBITRUM} style={{ height: 20, objectFit: "contain" }} />
+          <img
+            src={arbitrum?.image}
+            style={{ height: 20, objectFit: "contain" }}
+          />
           Arbitrum
         </MainButton>
       </Stack>

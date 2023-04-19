@@ -2,7 +2,7 @@ import React from "react";
 import { Button, ButtonProps, styled } from "@mui/material";
 
 interface MainButtonProps {
-  appearance: "primary" | "default" | "border";
+  appearance?: "primary" | "default" | "border";
 }
 
 const StyledButton = styled(Button)<MainButtonProps>(
@@ -83,6 +83,7 @@ const MainButton: React.FC<ButtonProps & MainButtonProps> = ({
       appearance={appearance}
       variant="contained"
       disableElevation
+      sx={{ ...sx }}
       {...props}
     >
       {children}

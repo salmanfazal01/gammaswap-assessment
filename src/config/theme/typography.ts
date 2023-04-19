@@ -33,13 +33,13 @@ const themeTypography: TypographyVariantsOptions = {
     lineHeight: "32px",
   },
   h2: {
-    fontSize: "36px",
-    fontWeight: 500,
+    fontSize: "32px",
+    fontWeight: 700,
     lineHeight: "48px",
   },
   h1: {
     fontSize: "48px",
-    fontWeight: 500,
+    fontWeight: 700,
     lineHeight: "60px",
   },
   button: {
