@@ -1,23 +1,22 @@
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import {
+  Box,
   IconButton,
   Paper,
   Stack,
   Typography,
   styled,
-  Box,
 } from "@mui/material";
 import { yellow } from "@mui/material/colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MainButton from "../../components/buttons/MainButton";
 import OpenInNewTabButton from "../../components/buttons/OpenInNewTabButton";
-import { cryptos } from "../../utils/cryptos";
+import { useAppContext } from "../../context/AppContext";
+import { usePoolsContext } from "../../context/PoolsContext";
 import LiquidityAprInfo from "./LiquidityAprInfo";
 import Reserves from "./Reserves";
 import VolumeFees from "./VolumeFees";
-import { useAppContext } from "../../context/AppContext";
-import { usePoolsContext } from "../../context/PoolsContext";
 
 const StyledLogo = styled("img")({
   height: 40,
@@ -28,10 +27,20 @@ const InvestCard = () => {
   const { period, primaryCoin, secondaryCoin } = usePoolsContext();
   const [favorited, setFavorited] = useState(false);
 
+  const poolId = "gammaswapPoolIdFavorited";
+
   const { closeLoadingPopup, setLoadingPopup } = useAppContext();
 
+  useEffect(() => {
+    const isFavorited = localStorage.getItem(poolId) === "true";
+
+    setFavorited(isFavorited);
+  }, []);
+
   const toggleFavorite = () => {
-    setFavorited(!favorited);
+    const _fav = !favorited;
+    setFavorited(_fav);
+    localStorage.setItem(poolId, String(_fav));
   };
 
   const handleInvest = () => {
