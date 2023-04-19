@@ -14,9 +14,9 @@ import { Link, useNavigate } from "react-router-dom";
 const todos = [
   "Create a sick homepage with animations!",
   "Animated loading screen when changing pages ✅",
-  "Select field with options (24H, 1D, 1W...)",
-  "Ability to change symbols (add to context API)",
-  "Liquidity and APR number count up animation",
+  "Select field with options (24H, 1D, 1W...) ✅",
+  "Create Context API and store period + coins ✅",
+  "Ability to change symbols",
   "Reserves progess bar change color to match Figma",
   "Invest in pool button should imitate a real click handler ✅",
 ];
