@@ -61,7 +61,7 @@ const Home = () => {
           <Typography
             variant="h5"
             color="text.secondary"
-            sx={{ mb: 2, fontWeight: 600 }}
+            sx={{ mb: 2, fontWeight: 500 }}
           >
             To see my 1inch network aggregator clone that has an amazing
             homepage + functioning swapping features:
