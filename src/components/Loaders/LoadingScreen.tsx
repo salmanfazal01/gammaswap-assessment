@@ -1,5 +1,6 @@
-import { Box, Container, Stack, keyframes } from "@mui/material";
+import { Box, Container, Stack, keyframes, ThemeProvider } from "@mui/material";
 import LoadingLogo from "../../assets/images/logo-large.svg";
+import darkTheme from "../../config/theme/dark";
 
 const animate = keyframes`
   0% {
@@ -20,33 +21,35 @@ const animate = keyframes`
 
 const LoadingScreen = () => {
   return (
-    <Stack
-      alignItems="center"
-      justifyContent="center"
-      sx={{
-        height: "100vh",
-        width: "100vw",
-        bgcolor: "background.dark",
-        overflow: "hidden",
-      }}
-    >
-      <Container maxWidth="md">
-        <Box
-          sx={{
-            animation: `${animate} 3s infinite ease`,
-          }}
-        >
-          <img
-            src={LoadingLogo}
-            style={{
-              maxHeight: "300px",
-              width: "100%",
-              objectFit: "contain",
+    <ThemeProvider theme={darkTheme}>
+      <Stack
+        alignItems="center"
+        justifyContent="center"
+        sx={{
+          height: "100vh",
+          width: "100vw",
+          bgcolor: "background.default",
+          overflow: "hidden",
+        }}
+      >
+        <Container maxWidth="md">
+          <Box
+            sx={{
+              animation: `${animate} 3s infinite ease`,
             }}
-          />
-        </Box>
-      </Container>
-    </Stack>
+          >
+            <img
+              src={LoadingLogo}
+              style={{
+                maxHeight: "300px",
+                width: "100%",
+                objectFit: "contain",
+              }}
+            />
+          </Box>
+        </Container>
+      </Stack>
+    </ThemeProvider>
   );
 };
 

@@ -12,7 +12,7 @@ const LoadingPopup = () => {
 
   return (
     <Dialog
-      onClose={closeLoadingPopup}
+      disableEscapeKeyDown
       open={!!loadingPopup}
       PaperProps={{
         elevation: 0,
@@ -45,6 +45,7 @@ const LoadingPopup = () => {
             height: 48,
             color: "primary.main",
           }}
+          disabled
         >
           Close
         </Button>

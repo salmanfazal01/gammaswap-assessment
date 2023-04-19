@@ -5,7 +5,7 @@ interface CustomTypeBackground extends TypeBackground {
   dark: string;
 }
 
-const theme = createTheme({
+const lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
@@ -30,4 +30,4 @@ const theme = createTheme({
   typography: themeTypography,
 });
 
-export default theme;
+export default lightTheme;

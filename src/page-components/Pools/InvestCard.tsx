@@ -16,6 +16,7 @@ import { cryptos } from "../../utils/cryptos";
 import LiquidityAprInfo from "./LiquidityAprInfo";
 import Reserves from "./Reserves";
 import VolumeFees from "./VolumeFees";
+import { useAppContext } from "../../context/AppContext";
 
 const StyledLogo = styled("img")({
   height: 40,
@@ -27,8 +28,23 @@ const InvestCard = () => {
   const [secondary, setSecondary] = useState(cryptos[13]);
   const [favorited, setFavorited] = useState(false);
 
+  const { loadingPopup, closeLoadingPopup, setLoadingPopup } = useAppContext();
+
+  console.log(loadingPopup);
+
   const toggleFavorite = () => {
     setFavorited(!favorited);
+  };
+
+  const handleInvest = () => {
+    setLoadingPopup({
+      title: "Investing",
+      message: "Please wait while your transaction is processing...",
+    });
+
+    setTimeout(() => {
+      closeLoadingPopup();
+    }, 4000);
   };
 
   return (
@@ -129,7 +145,12 @@ const InvestCard = () => {
           </Stack>
 
           {/* Invest */}
-          <MainButton appearance="default" size="large" fullWidth>
+          <MainButton
+            appearance="default"
+            size="large"
+            fullWidth
+            onClick={handleInvest}
+          >
             Invest in Pool
           </MainButton>
         </Box>

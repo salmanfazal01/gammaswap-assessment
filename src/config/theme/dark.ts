@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 import themeTypography from "./typography";
 
-const theme = createTheme({
+const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
@@ -18,4 +18,4 @@ const theme = createTheme({
   typography: themeTypography,
 });
 
-export default theme;
+export default darkTheme;

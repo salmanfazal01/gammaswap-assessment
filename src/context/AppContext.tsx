@@ -30,7 +30,7 @@ export const AppContextProvider: React.FC<ComponentWithChildProps> = ({
     >
       {children}
 
-      {!!loadingPopup && <LoadingPopup />}
+      <LoadingPopup />
     </AppContext.Provider>
   );
 };

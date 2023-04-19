@@ -5,6 +5,7 @@ import HomePage from "./pages/Home";
 import PoolPage from "./pages/Pool";
 import { Suspense } from "react";
 import LoadingScreen from "./components/Loaders/LoadingScreen";
+import "./index.css";
 
 const App = () => {
   return (
