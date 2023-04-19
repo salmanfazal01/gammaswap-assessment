@@ -45,7 +45,18 @@ const Reserves: React.FC<ReservesProps & StackProps> = ({
       <LinearProgress
         variant="determinate"
         value={percentage}
-        sx={{ height: "8px", borderRadius: "24px", mb: 1.25 }}
+        sx={{
+          height: "8px",
+          borderRadius: "24px",
+          mb: 1.25,
+          background:
+            "linear-gradient(270deg, rgba(38, 161, 123, 0.24) 0%, #26A17B 100%)",
+          "& .MuiLinearProgress-barColorPrimary": {
+            background: `linear-gradient(270deg, #141414 0%, rgba(20, 20, 20, 0.24) ${
+              100 - percentage
+            }%)`,
+          },
+        }}
       />
 
       <Stack

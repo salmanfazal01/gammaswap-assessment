@@ -136,7 +136,7 @@ const InvestCard = () => {
         <Box>
           {/* Reserves */}
           <Reserves
-            percentage={45}
+            percentage={50}
             primarySymbol={primaryCoin.symbol}
             secondarySymbol={secondaryCoin.symbol}
             primaryValue={"6598.00"}
