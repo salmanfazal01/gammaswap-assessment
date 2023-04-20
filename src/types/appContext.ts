@@ -21,3 +21,16 @@ export interface PoolsContextType {
   setPrimaryCoin: (coin: CoinObjectType) => void;
   setSecondaryCoin: (coin: CoinObjectType) => void;
 }
+
+export interface PoolData {
+  primaryCoin: CoinObjectType;
+  secondaryCoin: CoinObjectType;
+  liquidity: string;
+  change: number;
+  apr: string;
+  volume: string;
+  fees: string;
+  split: number;
+  primarySplit: number;
+  secondarySplit: number;
+}

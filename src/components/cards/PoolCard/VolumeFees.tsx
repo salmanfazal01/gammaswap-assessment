@@ -1,14 +1,16 @@
 import React from "react";
-import { Stack, StackProps, Typography } from "@mui/material";
+import { Stack, StackProps, Typography, Skeleton } from "@mui/material";
 
 interface VolumeFeesProps {
   title: string;
   value: string;
+  loading?: boolean;
 }
 
 const VolumeFees: React.FC<VolumeFeesProps & StackProps> = ({
   title,
   value,
+  loading,
 }) => {
   return (
     <Stack
@@ -29,7 +31,7 @@ const VolumeFees: React.FC<VolumeFeesProps & StackProps> = ({
         variant="body2"
         sx={{ fontWeight: 700, letterSpacing: "0.02em" }}
       >
-        {value}
+        {loading ? <Skeleton variant="text" width={80} /> : value}
       </Typography>
     </Stack>
   );

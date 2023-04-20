@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Skeleton } from "@mui/material";
 import React from "react";
 
 interface LiquidityAprProps {
@@ -6,6 +6,7 @@ interface LiquidityAprProps {
   value: string;
   change?: number;
   caption: string;
+  loading?: boolean;
 }
 
 const LiquidityAprInfo: React.FC<LiquidityAprProps> = ({
@@ -13,6 +14,7 @@ const LiquidityAprInfo: React.FC<LiquidityAprProps> = ({
   value,
   change,
   caption,
+  loading,
 }) => (
   <Stack>
     <Typography
@@ -24,7 +26,7 @@ const LiquidityAprInfo: React.FC<LiquidityAprProps> = ({
     </Typography>
 
     <Typography variant="h2" sx={{ lineHeight: "38px" }}>
-      {value}
+      {loading ? <Skeleton variant="text" height={38} /> : value}
     </Typography>
 
     <Stack direction="row" spacing={0.5} alignItems="center">
@@ -35,8 +37,11 @@ const LiquidityAprInfo: React.FC<LiquidityAprProps> = ({
             color: change >= 0 ? "success.light" : "error.light",
           }}
         >
-          {change >= 0 ? "+" : "-"}
-          {change}%
+          {loading ? (
+            <Skeleton variant="text" width={30} />
+          ) : (
+            `${change >= 0 ? "+" : "-"}${change}%`
+          )}
         </Typography>
       )}
 

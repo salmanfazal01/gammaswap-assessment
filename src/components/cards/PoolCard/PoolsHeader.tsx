@@ -33,7 +33,7 @@ const PoolsHeader = () => {
       spacing={1}
     >
       <Typography sx={{ flex: 1, fontWeight: 700, fontSize: 28 }}>
-        Pool
+        Pools
       </Typography>
 
       <InfoText title="Performance Range" />

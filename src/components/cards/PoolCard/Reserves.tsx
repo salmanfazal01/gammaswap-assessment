@@ -6,6 +6,7 @@ import {
   styled,
   TypographyProps,
   StackProps,
+  Skeleton,
 } from "@mui/material";
 
 interface StyledTypographyProps extends TypographyProps {
@@ -18,10 +19,11 @@ const StyledTypography = styled(Typography)<StyledTypographyProps>({
 
 interface ReservesProps {
   percentage: number;
-  primaryValue: string;
+  primaryValue: number;
   primarySymbol: string;
-  secondaryValue: string;
+  secondaryValue: number;
   secondarySymbol: string;
+  loading?: boolean;
 }
 
 const Reserves: React.FC<ReservesProps & StackProps> = ({
@@ -30,6 +32,7 @@ const Reserves: React.FC<ReservesProps & StackProps> = ({
   primarySymbol,
   secondaryValue,
   secondarySymbol,
+  loading,
   sx = {},
 }) => {
   return (
@@ -44,7 +47,7 @@ const Reserves: React.FC<ReservesProps & StackProps> = ({
 
       <LinearProgress
         variant="determinate"
-        value={percentage}
+        value={loading ? 0 : percentage}
         sx={{
           height: "8px",
           borderRadius: "24px",
@@ -67,19 +70,29 @@ const Reserves: React.FC<ReservesProps & StackProps> = ({
         alignItems="center"
         justifyContent="space-between"
       >
-        <StyledTypography>
-          {primaryValue}{" "}
-          <StyledTypography component="span" color="text.secondary">
-            {primarySymbol}
-          </StyledTypography>
-        </StyledTypography>
+        {loading ? (
+          <>
+            <Skeleton variant="text" width={100} />
 
-        <StyledTypography>
-          {secondaryValue}{" "}
-          <StyledTypography component="span" color="text.secondary">
-            {secondarySymbol}
-          </StyledTypography>
-        </StyledTypography>
+            <Skeleton variant="text" width={100} />
+          </>
+        ) : (
+          <>
+            <StyledTypography>
+              {primaryValue}{" "}
+              <StyledTypography component="span" color="text.secondary">
+                {primarySymbol}
+              </StyledTypography>
+            </StyledTypography>
+
+            <StyledTypography>
+              {secondaryValue}{" "}
+              <StyledTypography component="span" color="text.secondary">
+                {secondarySymbol}
+              </StyledTypography>
+            </StyledTypography>
+          </>
+        )}
       </Stack>
     </Stack>
   );

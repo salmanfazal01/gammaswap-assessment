@@ -4,16 +4,19 @@ import {
   Box,
   IconButton,
   Paper,
+  Skeleton,
   Stack,
   Typography,
   styled,
 } from "@mui/material";
 import { yellow } from "@mui/material/colors";
-import { useEffect, useState } from "react";
-import MainButton from "../../components/buttons/MainButton";
-import OpenInNewTabButton from "../../components/buttons/OpenInNewTabButton";
-import { useAppContext } from "../../context/AppContext";
-import { usePoolsContext } from "../../context/PoolsContext";
+import React from "react";
+import MainButton from "../../../components/buttons/MainButton";
+import OpenInNewTabButton from "../../../components/buttons/OpenInNewTabButton";
+import { useAppContext } from "../../../context/AppContext";
+import { usePoolsContext } from "../../../context/PoolsContext";
+import usePool from "../../../hooks/usePool";
+import { PoolData } from "../../../types/appContext";
 import LiquidityAprInfo from "./LiquidityAprInfo";
 import Reserves from "./Reserves";
 import VolumeFees from "./VolumeFees";
@@ -23,25 +26,23 @@ const StyledLogo = styled("img")({
   width: 40,
 });
 
-const InvestCard = () => {
-  const { period, primaryCoin, secondaryCoin } = usePoolsContext();
-  const [favorited, setFavorited] = useState(false);
-
-  const poolId = "gammaswapPoolIdFavorited";
-
+const PoolCard: React.FC<{ id: number }> = ({ id }) => {
+  const { period } = usePoolsContext();
   const { closeLoadingPopup, setLoadingPopup } = useAppContext();
+  const { loading, data, favorited, toggleFavorite } = usePool(id);
 
-  useEffect(() => {
-    const isFavorited = localStorage.getItem(poolId) === "true";
-
-    setFavorited(isFavorited);
-  }, []);
-
-  const toggleFavorite = () => {
-    const _fav = !favorited;
-    setFavorited(_fav);
-    localStorage.setItem(poolId, String(_fav));
-  };
+  const {
+    primaryCoin,
+    secondaryCoin,
+    primarySplit,
+    secondarySplit,
+    apr,
+    change,
+    fees,
+    liquidity,
+    split,
+    volume,
+  }: PoolData = data;
 
   const handleInvest = () => {
     setLoadingPopup({
@@ -75,23 +76,43 @@ const InvestCard = () => {
             {/* Symbols */}
             <Stack spacing={2.5}>
               <Stack direction="row">
-                <StyledLogo src={primaryCoin.image} />
-                <StyledLogo src={secondaryCoin.image} sx={{ ml: -0.5 }} />
+                {loading ? (
+                  <Skeleton variant="circular" width={40} height={40} />
+                ) : (
+                  <StyledLogo src={primaryCoin.image} />
+                )}
+
+                {loading ? (
+                  <Skeleton
+                    variant="circular"
+                    width={40}
+                    height={40}
+                    sx={{ ml: -0.5 }}
+                  />
+                ) : (
+                  <StyledLogo src={secondaryCoin.image} sx={{ ml: -0.5 }} />
+                )}
               </Stack>
 
               <Typography variant="h5" sx={{ fontWeight: 700 }}>
-                {primaryCoin.symbol} / {secondaryCoin.symbol}
+                {loading ? (
+                  <Skeleton variant="text" />
+                ) : (
+                  `${primaryCoin.symbol} / ${secondaryCoin.symbol}`
+                )}
               </Typography>
             </Stack>
 
             {/* Favorite */}
-            <IconButton onClick={toggleFavorite} size="small">
-              {favorited ? (
-                <StarIcon sx={{ color: yellow[700] }} />
-              ) : (
-                <StarBorderIcon sx={{ color: "text.secondary" }} />
-              )}
-            </IconButton>
+            {!loading && (
+              <IconButton onClick={toggleFavorite} size="small">
+                {favorited ? (
+                  <StarIcon sx={{ color: yellow[700] }} />
+                ) : (
+                  <StarBorderIcon sx={{ color: "text.secondary" }} />
+                )}
+              </IconButton>
+            )}
           </Stack>
 
           {/* Links */}
@@ -102,6 +123,7 @@ const InvestCard = () => {
             <OpenInNewTabButton
               text="Uniswap v2"
               link="https://www.uniswap.com/"
+              loading={loading}
             />
 
             <OpenInNewTabButton
@@ -120,15 +142,17 @@ const InvestCard = () => {
         >
           <LiquidityAprInfo
             title="Liquidity"
-            value="$23.00M"
-            change={2.38}
+            value={liquidity}
+            change={change}
             caption={`${period} Change`}
+            loading={loading}
           />
 
           <LiquidityAprInfo
             title="APR"
-            value="2.34%"
+            value={apr}
             caption={`${period} Performance`}
+            loading={loading}
           />
         </Stack>
 
@@ -136,19 +160,28 @@ const InvestCard = () => {
         <Box>
           {/* Reserves */}
           <Reserves
-            percentage={50}
+            percentage={split}
             primarySymbol={primaryCoin.symbol}
             secondarySymbol={secondaryCoin.symbol}
-            primaryValue={"6598.00"}
-            secondaryValue={"11,581,900"}
+            primaryValue={primarySplit}
+            secondaryValue={secondarySplit}
             sx={{ mb: 4 }}
+            loading={loading}
           />
 
           {/* Volume + Fees */}
           <Stack spacing={1.5} sx={{ mb: 4 }}>
-            <VolumeFees title={`${period} Volume`} value="$15,00M" />
+            <VolumeFees
+              title={`${period} Volume`}
+              value={volume}
+              loading={loading}
+            />
 
-            <VolumeFees title={`${period} Fees`} value="$50,000" />
+            <VolumeFees
+              title={`${period} Fees`}
+              value={fees}
+              loading={loading}
+            />
           </Stack>
 
           {/* Invest */}
@@ -157,6 +190,7 @@ const InvestCard = () => {
             size="large"
             fullWidth
             onClick={handleInvest}
+            disabled={loading}
           >
             Invest in Pool
           </MainButton>
@@ -166,4 +200,4 @@ const InvestCard = () => {
   );
 };
 
-export default InvestCard;
+export default PoolCard;

@@ -16,7 +16,7 @@ const todos = [
   "Animated loading screen when changing pages ✅",
   "Select field with options (24H, 1D, 1W...) ✅",
   "Create Context API and store period + coins ✅",
-  "Ability to change symbols",
+  "Skeleton loader on pool card ✅",
   "Add favorite to local storage ✅",
   "Reserves progess bar change color to match Figma ✅",
   "Invest in pool button should imitate a real click handler ✅",

@@ -1,13 +1,14 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Skeleton } from "@mui/material";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { Link } from "react-router-dom";
 
 interface Props {
   link: string;
   text: string;
+  loading?: boolean;
 }
 
-const OpenInNewTabButton: React.FC<Props> = ({ link, text }) => (
+const OpenInNewTabButton: React.FC<Props> = ({ link, text, loading }) => (
   <Link
     to={link}
     target="_blank"
@@ -30,7 +31,7 @@ const OpenInNewTabButton: React.FC<Props> = ({ link, text }) => (
         variant="body2"
         sx={{ letterSpacing: "0.02em", fontWeight: 500 }}
       >
-        {text}
+        {loading ? <Skeleton width={100} /> : text}
       </Typography>
 
       <OpenInNewIcon sx={{ fontSize: "13px" }} />

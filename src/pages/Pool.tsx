@@ -1,9 +1,8 @@
-import React from "react";
-import { Stack, Container, Box } from "@mui/material";
-import PoolsHeader from "../page-components/Pools/PoolsHeader";
-import InvestCard from "../page-components/Pools/InvestCard";
+import { Box, Container, Stack } from "@mui/material";
 import Background from "../assets/images/background.svg";
+import PoolCard from "../components/cards/PoolCard";
 import withLoadingScreen from "../hoc/withLoadingScreen";
+import PoolsHeader from "../page-components/Pools/PoolsHeader";
 
 const Pool = () => {
   return (
@@ -29,7 +28,7 @@ const Pool = () => {
           <PoolsHeader />
 
           {/* Invest Component */}
-          <InvestCard />
+          <PoolCard id={1} />
         </Stack>
       </Container>
     </Box>
